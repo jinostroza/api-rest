@@ -4,7 +4,7 @@ const jwt = require('jwt-simple')
 const moment = require('moment')
 const config = require('../config')
 
-function isAuth(req, res/*, next*/){
+function isAuth(req, res, next){
   if(!req.headers.authorization){
     return res.status(403).send({message: "No tienes autorización"})
   }
@@ -17,9 +17,7 @@ function isAuth(req, res/*, next*/){
   }
 
   req.user = payload.sub
-
-  return res.status(200).send({message: "El asd"})
-  //next()
+  next()
 }
 
 module.exports = isAuth
